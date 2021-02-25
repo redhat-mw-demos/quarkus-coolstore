@@ -29,6 +29,7 @@ public class Producers {
     @ConfigProperty(name = "jdg.port", defaultValue = "11222")
     int dgPort;
 
+    /* FIX ME: remove marshallers and use the protostream annotations
     @Produces
     MessageMarshaller promotionMarshaller() {
         return new PromotionMarhsaller();
@@ -48,7 +49,7 @@ public class Producers {
     MessageMarshaller shoppingCartMarshaller() {
         return new ShoppingCartMarshaller();
     }
-
+*/
     @Produces
     Gson createGsonObject() {
         return new Gson();
@@ -68,10 +69,12 @@ public class Producers {
         FileDescriptorSource fds = new FileDescriptorSource();
         fds.addProtoFiles("META-INF/cart.proto");
         serCtx.registerProtoFiles(fds);
-        serCtx.registerMarshaller(new ShoppingCartMarshaller());
+      /*  serCtx.registerMarshaller(new ShoppingCartMarshaller());
         serCtx.registerMarshaller(new ShoppingCartItemMarshaller());
         serCtx.registerMarshaller(new ProductMarshaller());
         serCtx.registerMarshaller(new PromotionMarhsaller());
+
+       */
         return manager.getCache();
     }
 
